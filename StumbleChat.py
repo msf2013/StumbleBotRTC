@@ -183,7 +183,16 @@ def SendPrivateMessage(handle, message):
 def SendPublicEmoji(message):
     emoji = message + ' ~~🔥~~'
     ws.send(json.dumps({"cc": "msg","text": emoji}))
-
+    
+#Rewrite of Nortxorts tinychat function
+def HandleUrb(search):
+    if str(search).strip():
+        urban_api_url = 'http://api.urbandictionary.com/v0/define?term=%s' % search
+        g = requests.get(urban_api_url).text
+        response = json.loads(g)['list'][0]['definition']
+        #permalink = json.loads(g)['list'][0]['permalink'] #extra
+        SendPublicMessage(response)
+        
 def HandleRoll():
     choices = ['1', '2', '3', '4', '5', '6']
     rollu = random.choice(choices)
@@ -532,9 +541,14 @@ def HandlePublicMessage(data):
             url = decode['text']
             msg = url.split(' ')
             vid = msg[1]
+            #cleanurl = vid.split('&')[0] # removes anything from/after v=3j4h3& <- which aint needed
             
             YoutubeAdd(vid)
-
+        if text.startswith('@urb'):
+            
+            msg = text.split(' ')
+            word = msg[1::]
+            HandleUrb(word)
 def HandlePrivateMessage(data):
     if data:
         handle = data['handle']
