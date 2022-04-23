@@ -130,6 +130,7 @@ tokesstarted = False
 tokes = 0
 triviastarted = False
 greet = True
+
 #room data
 pingcount = 0
 
@@ -152,21 +153,7 @@ def HandleUptime():
     SendPublicMessage(str(seconds[0]))
 def ConnectToTwitch(twitchchannel):
     
-    print('Connecting to %s on Twitch!' % twitchchannel)
-    twitchsocket.connect((twitchserver, twitchport))
-    twitchsocket.send(f"PASS {twitchtoken}\n".encode('utf-8'))
-    twitchsocket.send(f"NICK {twitchnickname}\n".encode('utf-8'))
-    twitchsocket.send(f"JOIN {twitchchannel}\n".encode('utf-8'))
-
-    while True:
-        resp = twitchsocket.recv(2048).decode('utf-8')
-        SendPublicMessage('Connected to %s!' % twitchchannel)
-        print(resp)
-        if resp/startswith('PING :tmi.twitch.tv'):
-            twitchsocket.send(b'PONG :tmi.twitch.tv')
-        if resp.startswith('@quit'):
-            break
-    twitchsocket.close()
+    pass #coming soon
 def HandleMessage(message):
 
     print("Message: %s" % message)
