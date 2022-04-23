@@ -8,7 +8,6 @@ pip install requests
 pip install websockets
 
 # Commands(until roles are made, all commands are public)
-# Makes the prefix @, can change this but ! seems to get filtered with certain commands, also may effect IRC/Twitch when added.
 
 prefix = ['@']
 
