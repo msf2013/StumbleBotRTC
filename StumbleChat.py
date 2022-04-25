@@ -550,7 +550,7 @@ def HandleUserJoin(data):
     mod = data['mod']
     handle = data['handle']
 
-    if mod == 0 and mod == 0: #GUEST
+    if mod == 0: #GUEST
 
         if greet: SendPublicMessage('Welcome to the room %s: %s (Level %s). 💓' % (name, handle, mod))
         print('[User Join] %s(Level %s) has joined the room!' % (name, mod))
