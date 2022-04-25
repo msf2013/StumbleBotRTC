@@ -560,7 +560,7 @@ def HandleUserJoin(data):
             if debugging:print("[User Join] %s added to Guests!" % name)
 
 
-    if mod == 1 and mod == 1: #EVERYONE
+    if mod == 1: #EVERYONE
         if greet: SendPublicMessage('Welcome to the room %s: %s (Level %s). 💓' % (name, handle, mod))
         print('[Operator Join] %s(Level %s) has joined the room!' % (name, mod))
         if name not in Level1:
@@ -568,7 +568,7 @@ def HandleUserJoin(data):
             userlist.append(handle)
             if debugging:print("[User Join] %s added to everyone!" % name)
 
-    if mod == 2 and mod == 2: #OPERATOR
+    if mod == 2: #OPERATOR
         if greet: SendPublicMessage('Welcome to the room %s: %s (Level %s). 💓' % (name, handle, mod))
         print('[Moderator Join] %s(Level %s) has joined the room!' % (name, mod))
         if name not in Level2:
@@ -576,7 +576,7 @@ def HandleUserJoin(data):
             userlist.append(handle)
             if debugging:print("[User Join] %s added to Operators!" % name)
 
-    if mod == 3 and mod == 3: #COWNER
+    if mod == 3: #COWNER
         if greet: SendPublicMessage('Welcome to the room %s: %s (Level %s). 💓' % (name, handle, mod))
         print('[CoOwner Join] %s(Level %s) has joined the room!' % (name, mod))
         if name not in Level3:
@@ -584,7 +584,7 @@ def HandleUserJoin(data):
             userlist.append(handle)
             if debugging:print("[User Join] %s added to CoOwners!" % name)
 
-    if mod == 4 and mod == 4: #ADMIN
+    if mod == 4: #ADMIN
         if greet: SendPublicMessage('Welcome to the room %s: %s (Level %s). 💓' % (name, handle, mod))
         print('[Admin Join] %s(Level %s) has joined the room!' % (name, mod))
         if name not in Level4:
