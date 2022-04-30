@@ -7,6 +7,8 @@ Requires Libraries:
 pip install requests
 pip install websockets
 
+https://discord.gg/HHChAB8wZg
+
 # Commands(until roles are made, all commands are public)
 
 prefix = ['@']
