@@ -16,8 +16,9 @@ import socket
 #================  URLS  ===================
 #===========================================
 
+# {room:}
 tokenUrl = "https://stumblechat.com/api/room/token/thevoid"
-profileurl = 'https://stumblechat.com/api/profile/thevoid'
+profileurl = "https://stumblechat.com/api/profile/thevoid"
 
 
 #===========================================
@@ -28,7 +29,9 @@ botsname = 'botsname'
 username = 'username'
 password = 'password'
 room = 'roomname'
-webserver = "wss1.stumblechat.com/" //OG address wss://wss32.stumblechat.com/
+webserver = "wss1.stumblechat.com/" #OG address wss://wss32.stumblechat.com/
+joinserver = "wss://wss2.stumblechat.com/"
+
 prefix = ['@', '!']
 botadmins = ['1057372']
 botonline = False
@@ -162,14 +165,14 @@ def HandleMessage(message):
     pass
 def SendPublicMessage(message):
     
-    ws.send(json.dumps({"cc": "msg","text": message}))
+    ws.send(json.dumps({"stumble": "msg","text": message}))
 
 def SendPrivateMessage(handle, message):
-    ws.send(json.dumps({"cc": "pvtmsg","handle": handle, "text": message}))
+    ws.send(json.dumps({"stumble": "pvtmsg","handle": handle, "text": message}))
 
 def SendPublicEmoji(message):
     emoji = message + ' ~~🔥~~'
-    ws.send(json.dumps({"cc": "msg","text": emoji}))
+    ws.send(json.dumps({"stumble": "msg","text": emoji}))
     
 #Rewrite of Nortxorts tinychat function
 def HandleUrb(search):
@@ -287,7 +290,7 @@ def HandleFortune():
     SendPublicMessage(random.choice(answers))
 def YoutubeAdd(videoid):   
     data = {
-            "cc": "youtube",
+            "stumble": "youtube",
             "type": "add",
             "id": videoid,
             "time": 1}
@@ -300,9 +303,9 @@ def CheckMessage(username, msg):
         pass
 
         if kob == False: # False to kick, True to ban
-            ws.send(json.dumps({"cc": "kick","user": username}))
+            ws.send(json.dumps({"stumble": "kick","user": username}))
         else:
-            ws.send(json.dumps({"cc": "ban","user": username}))
+            ws.send(json.dumps({"stumble": "ban","user": username}))
 def HandleMood():
 
     moods = ['Happier than Gallagher at a Farmer\'s market.',
@@ -422,7 +425,7 @@ def Handle_Joined(data):
     print('Joined %s as %s' % (room, botsname))
 
 def Handle_Ping():
-    ws.send(json.dumps({"cc":"pong"}))
+    ws.send(json.dumps({"stumble":"0"}))
     if debugging: print("Pong!")
 def Handle_YoutubePlay(data):
 
@@ -659,12 +662,12 @@ def HandleCallBack(data):
     
     decode = json.loads(str(data))
     
-    event = decode["cc"]
+    event = decode["stumble"]
     if debugging:print("event = %s" % event)
     print(data)
 
 
-    if event.startswith('ping'):
+    if event.startswith('0'): #no longer 'ping/pong'
         Handle_Ping()     
 
     if event.startswith('sysmsg'):
@@ -712,7 +715,7 @@ def Connect():
         if debugging: print("Getting Token...")  
         
 
-        ws.send(json.dumps({"cc":"join", "token": token, "room": room, "nick": botsname}))
+        ws.send(json.dumps({"stumble":"join", "token": token, "room": room, "nick": botsname}))
         print("%s is online! Connected to %s" % (botsname, endpoint))
 
         if annoucement:
