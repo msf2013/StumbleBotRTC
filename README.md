@@ -6,7 +6,7 @@ Requires Python 3+
 Requires Libraries:
 pip install requests websockets
 
-https://discord.gg/HHChAB8wZg
+Discord: x0r#3027
 
 # Commands(until roles are made, all commands are public)
 
